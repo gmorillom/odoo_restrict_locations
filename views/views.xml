@@ -1,0 +1,36 @@
+<odoo>
+  <data>
+
+    
+    <record id="view_location_form" model="ir.ui.view">
+      <field name="name">restrict.locations.view.location.form</field>
+      <field name="model">stock.location</field>
+      <field name="inherit_id" ref="stock.view_location_form"></field>
+      <field name="arch" type="xml">
+
+        <xpath expr="//group[@name='additional_info']" position="inside">
+          <field name="restrict_location" groups="base.group_erp_manager"></field>
+        </xpath>
+
+      </field>
+    </record>
+
+    <record id="view_users_form" model="ir.ui.view">
+      <field name="name">restrict.locations.view.users.form</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form"></field>
+      <field name="arch" type="xml">
+
+        <xpath expr="//page[last()]" position="after">
+          <page string='Locations' name='allowed_locations'>
+            <group name="groupleft">
+              <field name="allowed_restricted_locations" widget="many2many_tags" domain="[('restrict_location','=',True)]"></field>
+            </group>
+          </page>
+        </xpath>
+
+      </field>
+    </record>
+
+  </data>
+</odoo>
