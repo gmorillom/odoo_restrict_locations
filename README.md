@@ -1,0 +1,1 @@
+# odoo_restrict_locations
